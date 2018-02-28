@@ -48,5 +48,12 @@ namespace Paint
         {
             canvas.Children.Clear();
         }
+
+        private void canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point position = Mouse.GetPosition(canvas);
+            classes.Shape shape = new Circle(Colors.Purple, new Point (position.X,position.Y), new Point(400,400));
+            classes.Drawing.Draw(shape, canvas);
+        }
     }
 }
