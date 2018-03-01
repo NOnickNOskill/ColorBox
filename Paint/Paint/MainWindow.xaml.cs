@@ -24,6 +24,10 @@ namespace Paint
             InitializeComponent();
         }
 
+        public bool flag = false;
+        public Point topLeft;
+        private classes.Shape shape;
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             classes.Shape shape = new classes.Rectangle(Colors.Green, new Point(100, 100), new Point(200, 300));
@@ -41,7 +45,6 @@ namespace Paint
             Point[] triangle = new Point[3] { new Point(800, 200), new Point(1000, 200), new Point(1000, 400) };
             shape = new classes.Polygon(Colors.DarkBlue, triangle);
             classes.Drawing.Draw(shape, canvas);
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -49,11 +52,22 @@ namespace Paint
             canvas.Children.Clear();
         }
 
+
         private void canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point position = Mouse.GetPosition(canvas);
-            classes.Shape shape = new Circle(Colors.Purple, new Point (position.X,position.Y), new Point(400,400));
+             shape = new Square(Colors.Purple, new Point (position.X,position.Y), new Point(position.X, position.Y));
+            topLeft = position;
             classes.Drawing.Draw(shape, canvas);
+        }
+
+        private void canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                Point position = Mouse.GetPosition(canvas);
+                shape.bottomRight = position;
+            }
         }
     }
 }

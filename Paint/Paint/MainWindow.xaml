@@ -11,8 +11,7 @@
     <Grid>
         <Canvas x:Name="canvas"
                 Background="#FFF1EBEB"
-                Margin="10,0,10,70" MouseLeftButtonDown="canvas_MouseLeftButtonDown">
-        </Canvas>
+                Margin="10,0,10,70" MouseLeftButtonDown="canvas_MouseLeftButtonDown" MouseMove="canvas_MouseMove"/>
         <Button Width="200"
                 Height="50"
                 HorizontalAlignment="Left"
