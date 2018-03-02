@@ -18,12 +18,18 @@ namespace Paint.classes
 {
     class Polygon : Shape
     {
-        public Polygon(Color color, Point[] vertecies) : base(color)
+        public  Polygon(Color color, Point[] vertecies) : base(color)
         {
             drawBase = new System.Windows.Shapes.Polygon();
             SetFill();
 
             ((System.Windows.Shapes.Polygon)drawBase).Points = new PointCollection(vertecies);
         }
+
+        protected override void SetSides()
+        {
+        
+        }
+
     }
 }

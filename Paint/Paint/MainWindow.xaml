@@ -40,7 +40,8 @@
                      Height="25"
                      Width="300"
                      FontFamily="Comic Sans MS" FontSize="15"
-                     Margin="0, 0, 0, 30">
+                     Margin="0, 0, 0, 30"
+                     IsChecked="True">
                 Прямоугольник
             </RadioButton>
             <RadioButton HorizontalAlignment="Center"

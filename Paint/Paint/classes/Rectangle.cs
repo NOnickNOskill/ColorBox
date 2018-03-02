@@ -47,10 +47,12 @@ namespace Paint.classes
             SetSides();
         }
 
-        private void SetSides()
+        protected override void SetSides()
         {
-            Width = bottomRight.X - topLeft.X;
-            Height = bottomRight.Y - topLeft.Y;
+            if (bottomRight.X - topLeft.X >= 0)
+                Width = bottomRight.X - topLeft.X;
+            if (bottomRight.Y - topLeft.Y >= 0)
+                Height = bottomRight.Y - topLeft.Y;
         }
     }
 }

@@ -56,8 +56,10 @@ namespace Paint
         private void canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point position = Mouse.GetPosition(canvas);
-            shape = new Square(Colors.Purple, new Point (position.X,position.Y), new Point(position.X + 100, position.Y + 200));
-            topLeft = position;
+            shape = SelectShape();
+            shape.Color = Colors.SaddleBrown;
+            shape.topLeft = position;
+            shape.BottomRight = position;
             classes.Drawing.Draw(shape, canvas);
         }
 
@@ -66,8 +68,24 @@ namespace Paint
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 Point position = Mouse.GetPosition(canvas);
-                shape.bottomRight = position;
+                shape.BottomRight = position;
             }
         }
+
+        private classes.Shape SelectShape()
+        {
+            int index=0;
+    
+            foreach(RadioButton rb in Choice.Children)
+            {
+                if ((bool)rb.IsChecked)
+                {
+                    index = Choice.Children.IndexOf(rb);
+                    break;
+                }
+            } 
+            return (classes.Shape)FigureList.allShapes[index].Clone();
+        }
+
     }
 }

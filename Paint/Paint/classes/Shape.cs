@@ -15,11 +15,35 @@ using System.Windows.Shapes;
 
 namespace Paint.classes
 {
-    abstract class Shape
+    abstract class Shape : ICloneable
     {
-        public Color color;
+        public Color Color
+        {
+            get
+            {
+                return color; 
+            }
+            set
+            {
+                color = value;
+                SetFill();
+            }
+        }
+        private Color color;
         public Point topLeft;
-        public Point bottomRight;
+        protected Point bottomRight;
+        public Point BottomRight
+        {
+            get
+            {
+                return bottomRight;
+            }
+            set
+            {
+                bottomRight = value;
+                SetSides();
+            }
+        }
 
         public System.Windows.Shapes.Shape drawBase;
 
@@ -34,5 +58,14 @@ namespace Paint.classes
         {
             drawBase.Fill = new SolidColorBrush(color);
         }
+
+        public Object Clone()
+        {
+            drawBase = new System.Windows.Shapes.Rectangle();
+            return MemberwiseClone();
+        }
+
+        protected abstract void SetSides();
+      
     }
 }

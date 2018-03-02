@@ -17,7 +17,7 @@ namespace Paint.classes
 {
     class FigureList 
     {
-        public List<Shape> allShapes = new List<Shape>()
+        public static List<Shape> allShapes = new List<Shape>()
         {
            new Rectangle(Colors.Black, new Point(), new Point()),
            new Square(Colors.Black, new Point(), new Point()),
