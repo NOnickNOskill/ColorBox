@@ -69,6 +69,7 @@
     <Compile Include="classes\Drawing.cs" />
     <Compile Include="classes\Polygon.cs" />
     <Compile Include="classes\Square.cs" />
+    <Compile Include="FigureList.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
