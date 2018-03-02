@@ -8,10 +8,10 @@
         Title="ColorBox v1.0"
         Width="1280"
         Height="720">
-    <Grid>
+    <Grid Background="#FFC8C8C8">
         <Canvas x:Name="canvas"
-                Background="#FFF1EBEB"
-                Margin="10,0,10,70" MouseLeftButtonDown="canvas_MouseLeftButtonDown" MouseMove="canvas_MouseMove"/>
+                Background="#FFFFFF"
+                Margin="10,10,10,70" MouseLeftButtonDown="canvas_MouseLeftButtonDown" MouseMove="canvas_MouseMove"/>
         <Button Width="200"
                 Height="50"
                 HorizontalAlignment="Left"
@@ -26,5 +26,39 @@
                 Margin="230,10, 10, 10" FontFamily="Comic Sans MS" FontSize="20" FontWeight="Bold" Click="Button_Click_1" IsCancel="True">
             Очистить
         </Button>
+        <Grid x:Name="Choice" >
+            <RadioButton HorizontalAlignment="Center"
+                     VerticalAlignment="Bottom"
+                     Height="25"
+                     Width="300"
+                     FontFamily="Comic Sans MS" FontSize="15"
+                     Margin="0, 0, 0, 5">
+                Квадрат
+            </RadioButton>
+            <RadioButton HorizontalAlignment="Center"
+                     VerticalAlignment="Bottom"
+                     Height="25"
+                     Width="300"
+                     FontFamily="Comic Sans MS" FontSize="15"
+                     Margin="0, 0, 0, 30">
+                Прямоугольник
+            </RadioButton>
+            <RadioButton HorizontalAlignment="Center"
+                     VerticalAlignment="Bottom"
+                     Height="25"
+                     Width="300"
+                     FontFamily="Comic Sans MS" FontSize="15"
+                     Margin="310, 0, 0, 5">
+                Круг
+            </RadioButton>
+            <RadioButton HorizontalAlignment="Center"
+                     VerticalAlignment="Bottom"
+                     Height="25"
+                     Width="300"
+                     FontFamily="Comic Sans MS" FontSize="15"
+                     Margin="310, 0, 0, 30">
+                Эллипс
+            </RadioButton>
+        </Grid>
     </Grid>
 </Window>

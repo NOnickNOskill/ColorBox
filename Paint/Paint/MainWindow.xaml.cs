@@ -56,7 +56,7 @@ namespace Paint
         private void canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point position = Mouse.GetPosition(canvas);
-            shape = new Square(Colors.Purple, new Point (position.X,position.Y), new Point(position.X, position.Y));
+            shape = new Square(Colors.Purple, new Point (position.X,position.Y), new Point(position.X + 100, position.Y + 200));
             topLeft = position;
             classes.Drawing.Draw(shape, canvas);
         }
