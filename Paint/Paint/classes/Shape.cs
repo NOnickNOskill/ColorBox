@@ -29,8 +29,20 @@ namespace Paint.classes
                 SetFill();
             }
         }
-        private Color color;
-        public Point topLeft;
+        protected Color color;
+        public  Point topLeft;
+        public Point TopLeft
+        {
+            get
+            {
+                return topLeft;
+            }
+            set
+            {
+                topLeft = value;
+                SetSides();
+            }
+        }
         protected Point bottomRight;
         public Point BottomRight
         {

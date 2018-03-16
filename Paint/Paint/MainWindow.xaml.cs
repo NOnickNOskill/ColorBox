@@ -24,9 +24,8 @@ namespace Paint
             InitializeComponent();
         }
 
-        public bool flag = false;
-        public Point topLeft;
         private classes.Shape shape;
+        private Creator currentcreator;
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -56,10 +55,7 @@ namespace Paint
         private void canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point position = Mouse.GetPosition(canvas);
-            shape = SelectShape();
-            shape.Color = Colors.SaddleBrown;
-            shape.topLeft = position;
-            shape.BottomRight = position;
+            shape = currentcreator.FactoryMethod(Colors.Red, position, position);
             classes.Drawing.Draw(shape, canvas);
         }
 
@@ -68,24 +64,28 @@ namespace Paint
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 Point position = Mouse.GetPosition(canvas);
-                shape.BottomRight = position;
+                shape.BottomRight = position; 
             }
         }
 
-        private classes.Shape SelectShape()
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            int index=0;
-    
-            foreach(RadioButton rb in Choice.Children)
-            {
-                if ((bool)rb.IsChecked)
-                {
-                    index = Choice.Children.IndexOf(rb);
-                    break;
-                }
-            } 
-            return (classes.Shape)FigureList.allShapes[index].Clone();
+            currentcreator = new RectangleCreator();
         }
 
+        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
+        {
+            currentcreator = new SquareCreator();
+        }
+
+        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
+        {
+            currentcreator = new EllipseCreator();
+        }
+
+        private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
+        {
+            currentcreator = new CircleCreator();
+        }
     }
 }

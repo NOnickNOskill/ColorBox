@@ -50,9 +50,15 @@ namespace Paint.classes
         protected override void SetSides()
         {
             if (bottomRight.X - topLeft.X >= 0)
+            {
                 Width = bottomRight.X - topLeft.X;
+            }
+
             if (bottomRight.Y - topLeft.Y >= 0)
+            {
                 Height = bottomRight.Y - topLeft.Y;
+            }
+          
         }
     }
 }

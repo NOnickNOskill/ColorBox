@@ -54,10 +54,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CircleCreator.cs" />
     <Compile Include="classes\Circle.cs" />
     <Compile Include="classes\Ellipse.cs" />
     <Compile Include="classes\Rectangle.cs" />
     <Compile Include="classes\Shape.cs" />
+    <Compile Include="EllipseCreator.cs" />
+    <Compile Include="RectangleCreator.cs" />
+    <Compile Include="SquareCreator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,7 +73,7 @@
     <Compile Include="classes\Drawing.cs" />
     <Compile Include="classes\Polygon.cs" />
     <Compile Include="classes\Square.cs" />
-    <Compile Include="FigureList.cs" />
+    <Compile Include="Creator.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
