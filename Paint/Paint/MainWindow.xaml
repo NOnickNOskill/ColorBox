@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ColorBox v1.0"
         Width="1280"
-        Height="720">
+        Height="720" KeyDown="Window_KeyDown">
     <Grid Background="#FFC8C8C8">
         <Canvas x:Name="canvas"
                 Background="#FFFFFF"

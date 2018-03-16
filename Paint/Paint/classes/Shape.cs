@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace Paint.classes
 {
-    abstract class Shape : ICloneable
+    abstract class Shape
     {
         public Color Color
         {
@@ -40,7 +40,7 @@ namespace Paint.classes
             set
             {
                 topLeft = value;
-                SetSides();
+                SetPosition();
             }
         }
         protected Point bottomRight;
@@ -52,9 +52,86 @@ namespace Paint.classes
             }
             set
             {
-                bottomRight = value;
+                SetVertex2X(value);
+                SetVertex2Y(value);
+                SetPosition();
                 SetSides();
             }
+        }
+
+        public virtual double Width
+        {
+            get
+            {
+                return drawBase.Width;
+            }
+            set
+            {
+                drawBase.Width = value;
+            }
+        }
+        public virtual double Height
+        {
+            get
+            {
+                return drawBase.Height;
+            }
+            set
+            {
+                drawBase.Height = value;
+            }
+        }
+
+        public bool reverseX, reverseY;
+
+        protected void SetVertex2X(Point v2)
+        {
+            double v1X = TopLeft.X;
+            if (reverseX)
+            {
+                v1X += Width;
+            }
+
+            if (v1X > v2.X)
+            {
+                topLeft.X = v2.X;
+
+                bottomRight.X = v1X;
+                reverseX = true;
+            }
+            else
+            {
+                bottomRight.X = v2.X;
+                reverseX = false;
+            }
+        }
+
+        protected void SetVertex2Y(Point v2)
+        {
+            double v1Y = TopLeft.Y;
+            if (reverseY)
+            {
+                v1Y += Height;
+            }
+
+            if (v1Y > v2.Y)
+            {
+                topLeft.Y = v2.Y;
+
+                bottomRight.Y = v1Y;
+                reverseY = true;
+            }
+            else
+            {
+                bottomRight.Y = v2.Y;
+                reverseY = false;
+            }
+        }
+
+        public void SetPosition()
+        {
+            Canvas.SetLeft(drawBase, topLeft.X);
+            Canvas.SetTop(drawBase, topLeft.Y);
         }
 
         public System.Windows.Shapes.Shape drawBase;

@@ -17,28 +17,7 @@ namespace Paint.classes
 {
     class Rectangle : Shape
     {
-        public virtual double Width
-        { 
-            get
-            {
-                return drawBase.Width;
-            }
-            set
-            {
-                drawBase.Width = value;
-            }
-        }
-        public virtual double Height
-        {
-            get
-            {
-                return drawBase.Height;
-            }
-            set
-            {
-                drawBase.Height = value;
-            }
-        }
+       
         
         public Rectangle(Color color, Point topLeft, Point bottomRight) : base(color, topLeft, bottomRight)
         {

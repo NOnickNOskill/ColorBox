@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Paint.classes.Circle">
+    <Position X="5.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>classes\Circle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Paint.classes.Ellipse">
+    <Position X="5" Y="10" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAIAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>classes\Ellipse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Paint.classes.Polygon">
+    <Position X="7.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>classes\Polygon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Paint.classes.Square">
+    <Position X="2.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>classes\Square.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Paint.classes.Shape">
+    <Position X="5" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAIBAAEABAAAACAAEQAAAAAAoCAAAAAgApAEBA=</HashCode>
+      <FileName>classes\Shape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Paint.classes.Rectangle">
+    <Position X="4" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>classes\Rectangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

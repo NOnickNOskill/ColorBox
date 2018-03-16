@@ -52,6 +52,8 @@ namespace Paint
         }
 
 
+
+
         private void canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point position = Mouse.GetPosition(canvas);
@@ -86,6 +88,14 @@ namespace Paint
         private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
         {
             currentcreator = new CircleCreator();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl) && canvas.Children.Count != 0)
+            {
+                canvas.Children.Remove(canvas.Children[canvas.Children.Count - 1]);
+            }
         }
     }
 }

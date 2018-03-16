@@ -21,8 +21,6 @@ namespace Paint.classes
         {
             Canvas.SetLeft(shape.drawBase, shape.topLeft.X);
             Canvas.SetTop(shape.drawBase, shape.topLeft.Y);
-            Canvas.SetBottom(shape.drawBase, shape.BottomRight.Y);
-            Canvas.SetRight(shape.drawBase, shape.BottomRight.X);
             canvas.Children.Add(shape.drawBase);
         }
     }
