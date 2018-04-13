@@ -41,3 +41,5 @@ C:\Users\user\Desktop\Uchioba\ООП\Git\ColorBox\Paint\Paint\obj\Debug\MainWind
 C:\Users\user\Desktop\Uchioba\ООП\Git\ColorBox\Paint\Paint\obj\Debug\Paint.g.resources
 C:\Users\user\Desktop\Uchioba\ООП\Git\ColorBox\Paint\Paint\obj\Debug\Paint.Properties.Resources.resources
 C:\Users\user\Desktop\Uchioba\ООП\Git\ColorBox\Paint\Paint\obj\Debug\Paint.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\Uchioba\ООП\Git\ColorBox\Paint\Paint\bin\Debug\Newtonsoft.Json.dll
+C:\Users\user\Desktop\Uchioba\ООП\Git\ColorBox\Paint\Paint\bin\Debug\Newtonsoft.Json.xml

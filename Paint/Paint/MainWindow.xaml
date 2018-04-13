@@ -11,7 +11,7 @@
     <Grid Background="#FFC8C8C8">
         <Canvas x:Name="canvas"
                 Background="#FFFFFF"
-                Margin="10,10,10,70" MouseLeftButtonDown="canvas_MouseLeftButtonDown" MouseMove="canvas_MouseMove"/>
+                Margin="10,10,200,70" MouseLeftButtonDown="canvas_MouseLeftButtonDown" MouseMove="canvas_MouseMove" ClipToBounds="True"/>
         <Button Width="200"
                 Height="50"
                 HorizontalAlignment="Left"
@@ -19,6 +19,11 @@
                 Margin="10" Click="Button_Click" FontFamily="Comic Sans MS" FontSize="20" FontWeight="Bold" IsDefault="True">
             Нарисовать
         </Button>
+        <ListBox Name="listItems"
+                 HorizontalAlignment="Right"
+                 Width="180"
+                 Margin="10,10,10,70" SelectionChanged="listItems_SelectionChanged">
+        </ListBox>
         <Button Width="200"
                 Height="50"
                 HorizontalAlignment="Left"
@@ -61,6 +66,28 @@
                      Margin="310, 0, 0, 30" Checked="RadioButton_Checked_2">
                 Эллипс
             </RadioButton>
+            <Button HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Name="saveButton"
+                    Width="200"
+                    Height="50"
+                    FontFamily="Comic Sans MS"
+                    Margin="10,10,10,10"
+                    FontSize="20"
+                    FontWeight="Bold" Click="saveButton_Click">
+                Сохранить
+            </Button>
+            <Button HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Name="openButton"
+                    Width="200"
+                    Height="50"
+                    FontFamily="Comic Sans MS"
+                    Margin="10,10,230,10"
+                    FontSize="20"
+                    FontWeight="Bold" Click="openButton_Click">
+                Открыть
+            </Button>
         </Grid>
     </Grid>
 </Window>

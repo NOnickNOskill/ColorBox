@@ -12,11 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 namespace Paint.classes
 {
+    [JsonObject(MemberSerialization.OptIn)]
     abstract class Shape
     {
+        [JsonProperty]
         public Color Color
         {
             get
@@ -31,6 +34,7 @@ namespace Paint.classes
         }
         protected Color color;
         public  Point topLeft;
+        [JsonProperty]
         public Point TopLeft
         {
             get
@@ -44,6 +48,7 @@ namespace Paint.classes
             }
         }
         protected Point bottomRight;
+        [JsonProperty]
         public Point BottomRight
         {
             get
@@ -58,6 +63,9 @@ namespace Paint.classes
                 SetSides();
             }
         }
+
+        [JsonProperty]
+        public Type factoryType;
 
         public virtual double Width
         {
@@ -81,6 +89,39 @@ namespace Paint.classes
                 drawBase.Height = value;
             }
         }
+        [JsonProperty]
+        public double OffsetX
+        {
+            get
+            {
+                return offsetx;
+            }
+            set
+            {
+                offsetx = value;
+                Move(offsetx, offsety);
+            }
+        }
+
+        private void Move(double offsetx, double offsety)
+        {
+            drawBase.RenderTransform = new TranslateTransform(offsetx, offsety);
+        }
+        [JsonProperty]
+        public double OffsetY
+        {
+            get
+            {
+                return offsety;
+            }
+            set
+            {
+                offsety = value;
+                Move(offsetx, offsety);
+            }
+        }
+
+        private double offsetx = 0, offsety = 0;
 
         public bool reverseX, reverseY;
 

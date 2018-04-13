@@ -19,4 +19,5 @@ namespace Paint.classes
     {
         public abstract Shape FactoryMethod(Color color, Point topLeft, Point bottomRight);
     }
+
 }

@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Paint.classes;
+using Newtonsoft.Json;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Paint
 {
@@ -23,6 +26,8 @@ namespace Paint
         {
             InitializeComponent();
         }
+
+        List<classes.Shape> shapeList = new List<classes.Shape>();
 
         private classes.Shape shape;
         private Creator currentcreator;
@@ -49,16 +54,18 @@ namespace Paint
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             canvas.Children.Clear();
+            listItems.Items.Clear();
+            shapeList.Clear();
         }
-
-
-
 
         private void canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point position = Mouse.GetPosition(canvas);
             shape = currentcreator.FactoryMethod(Colors.Red, position, position);
             classes.Drawing.Draw(shape, canvas);
+            shapeList.Add(shape);
+            listItems.Items.Add(shape.ToString().Substring(shape.ToString().LastIndexOf('.') + 1)); ;
+            shape.factoryType = currentcreator.GetType();
         }
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
@@ -67,6 +74,14 @@ namespace Paint
             {
                 Point position = Mouse.GetPosition(canvas);
                 shape.BottomRight = position; 
+            }
+
+            if (e.RightButton == MouseButtonState.Pressed && canvas.Children.Count > 0)
+            {
+
+                shape.OffsetX = -((shape.TopLeft.X + shape.BottomRight.X) / 2 - e.GetPosition(canvas).X);
+                shape.OffsetY = -((shape.TopLeft.Y + shape.BottomRight.Y) / 2 - e.GetPosition(canvas).Y);
+                
             }
         }
 
@@ -95,7 +110,82 @@ namespace Paint
             if (e.Key == Key.Z && Keyboard.IsKeyDown(Key.LeftCtrl) && canvas.Children.Count != 0)
             {
                 canvas.Children.Remove(canvas.Children[canvas.Children.Count - 1]);
+                listItems.Items.RemoveAt(listItems.Items.Count - 1);
+                shapeList.RemoveAt(shapeList.Count - 1);
             }
+        }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.FileName = "Picture";
+            dlg.DefaultExt = ".json";
+            dlg.Filter = "Text documents (.json)|*.json";
+            if (dlg.ShowDialog() == true)
+            {
+                string filename = dlg.FileName;
+                using (StreamWriter stream = new StreamWriter(filename))
+                {
+                    using (JsonWriter writer = new JsonTextWriter(stream))
+                    {
+                        for (int i=0; i < shapeList.Count; i++)
+                        {
+                            serializer.Serialize(writer, shapeList[i]);
+                            if (i != shapeList.Count - 1)
+                                stream.Write('\n');
+                        }
+                    }
+                }
+            }
+        }
+
+        private void openButton_Click(object sender, RoutedEventArgs e)
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            OpenFileDialog openFile = new OpenFileDialog
+            {
+                FileName = "",
+                DefaultExt = ".json",
+                Filter = "Text documents (.json)|*.json"
+            };
+            if (openFile.ShowDialog() ==true)
+            {
+                string filename = openFile.FileName;
+                using (StreamReader stream = new StreamReader(filename))
+                {
+                    string data = stream.ReadToEnd();
+                    {
+                        string[] dataArray = data.Split('\n'); 
+                        foreach (string dataBlock in dataArray)
+                        {
+                            try
+                            {
+                                classes.Shape sh = JsonConvert.DeserializeObject<classes.Rectangle>(dataBlock, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Include });
+                                Creator factory = (Creator)Activator.CreateInstance(sh.factoryType);
+                                shape = factory.FactoryMethod(sh.Color, sh.TopLeft, sh.BottomRight);
+                                shape.factoryType = sh.factoryType;
+                                shape.OffsetX = sh.OffsetX;
+                                shape.OffsetY = sh.OffsetY;
+                                shapeList.Add(shape);
+                                listItems.Items.Add(shape.ToString().Substring(shape.ToString().LastIndexOf('.') + 1)); ;
+                                classes.Drawing.Draw(shape, canvas);
+                            }
+                            catch
+                            {
+                                continue;
+                            }
+                          
+                        }
+                    }
+                }
+            }
+        }
+
+        private void listItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listItems.SelectedIndex != -1)
+                shape = shapeList[listItems.SelectedIndex];
         }
     }
 }
