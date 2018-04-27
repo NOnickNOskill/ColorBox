@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 
 namespace Paint.classes
 {
-    abstract class Creator
+    public abstract class Creator
     {
         public abstract Shape FactoryMethod(Color color, Point topLeft, Point bottomRight);
     }

@@ -16,6 +16,7 @@ using Paint.classes;
 using Newtonsoft.Json;
 using Microsoft.Win32;
 using System.IO;
+using System.Reflection;
 
 namespace Paint
 {
@@ -25,21 +26,29 @@ namespace Paint
         public MainWindow()
         {
             InitializeComponent();
+            RefPlugins();
+            RefFactory();
         }
 
         List<classes.Shape> shapeList = new List<classes.Shape>();
+        private List<Creator> FactoryList = new List<Creator>()
+        {
+            new RectangleCreator(),
+            new EllipseCreator(),
+            new CircleCreator()
+        };
+        
 
         private classes.Shape shape;
         private Creator currentcreator;
+        private readonly string pluginPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             classes.Shape shape = new classes.Rectangle(Colors.Green, new Point(100, 100), new Point(200, 300));
             classes.Drawing.Draw(shape, canvas);
 
-            shape = new Square(Colors.Blue, new Point(400, 100), new Point(500, 300));
-            classes.Drawing.Draw(shape, canvas);
-
+          
             shape = new classes.Ellipse(Colors.Red, new Point(100, 400), new Point(300, 500));
             classes.Drawing.Draw(shape, canvas);
 
@@ -85,25 +94,6 @@ namespace Paint
             }
         }
 
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            currentcreator = new RectangleCreator();
-        }
-
-        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
-        {
-            currentcreator = new SquareCreator();
-        }
-
-        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
-        {
-            currentcreator = new EllipseCreator();
-        }
-
-        private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
-        {
-            currentcreator = new CircleCreator();
-        }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -129,12 +119,12 @@ namespace Paint
                 {
                     using (JsonWriter writer = new JsonTextWriter(stream))
                     {
-                        for (int i=0; i < shapeList.Count; i++)
-                        {
-                            serializer.Serialize(writer, shapeList[i]);
-                            if (i != shapeList.Count - 1)
-                                stream.Write('\n');
-                        }
+                        serializer.Serialize(writer, shapeList);
+                        //foreach (classes.Shape x in shapeList)
+                        //{
+                            
+                        //    stream.Write('\n');
+                        //}
                     }
                 }
             }
@@ -186,6 +176,56 @@ namespace Paint
         {
             if (listItems.SelectedIndex != -1)
                 shape = shapeList[listItems.SelectedIndex];
+        }
+
+        private void RefPlugins()
+        {
+            DirectoryInfo pluginDir = new DirectoryInfo(pluginPath);
+            if (!pluginDir.Exists)
+            {
+                pluginDir.Create();
+            }
+
+            var pluginFiles = Directory.GetFiles(pluginPath, "*dll");
+            foreach (var file in pluginFiles)
+            {
+                Assembly asm = Assembly.LoadFrom(file);
+                var types = asm.GetTypes().
+                    Where(t => t.GetInterfaces().
+                    Where(i => i.FullName == typeof(Plugin).FullName).Any());
+                foreach (var type in types)
+                {
+                    figurelist.Items.Add(type.Name);
+                }
+            }
+        }
+
+        private void RefFactory()
+        {
+            DirectoryInfo pluginDir = new DirectoryInfo(pluginPath);
+            if (!pluginDir.Exists)
+            {
+                pluginDir.Create();
+            }
+
+            var pluginFiles = Directory.GetFiles(pluginPath, "*dll");
+            foreach (var file in pluginFiles)
+            {
+                Assembly asm = Assembly.LoadFrom(file);
+                var types = asm.GetTypes().
+                    Where(t => t.GetInterfaces().
+                    Where(i => i.FullName == typeof(IPluginFactory).FullName).Any());
+                foreach (var type in types)
+                {
+                    var plugin = (Creator)Activator.CreateInstance(type);
+                    FactoryList.Add(plugin);
+                }
+            }
+        }
+
+        private void figurelist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currentcreator = FactoryList[figurelist.SelectedIndex];
         }
     }
 }

@@ -17,7 +17,7 @@ using Newtonsoft.Json;
 namespace Paint.classes
 {
     [JsonObject(MemberSerialization.OptIn)]
-    abstract class Shape
+    abstract public class Shape
     {
         [JsonProperty]
         public Color Color

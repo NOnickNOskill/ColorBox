@@ -3,24 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+using Paint.classes;
+using Paint;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows;
 
-namespace Paint.classes
+namespace Triangle
 {
-    public class Rectangle : Shape
+    public class Triangle : Shape, Plugin
     {
-        
-        public Rectangle(Color color, Point topLeft, Point bottomRight) : base(color, topLeft, bottomRight)
+        public Triangle(Color color, Point topLeft, Point bottomRight) : base(color, topLeft, bottomRight)
         {
-            drawBase = new System.Windows.Shapes.Rectangle();
+            drawBase = new System.Windows.Shapes.Polygon();
             SetFill();
             SetSides();
         }
@@ -36,7 +30,16 @@ namespace Paint.classes
             {
                 Height = bottomRight.Y - topLeft.Y;
             }
-          
+
         }
     }
+
+    public class TriangleCreator : Creator, IPluginFactory
+    {
+        public override Shape FactoryMethod(Color color, Point topLeft, Point bottomRight)
+        {
+            return new Triangle(color, topLeft, bottomRight);
+        }
+    }
+
 }

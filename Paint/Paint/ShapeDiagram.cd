@@ -21,17 +21,10 @@
       <FileName>classes\Polygon.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Paint.classes.Square">
-    <Position X="2.75" Y="10" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>classes\Square.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Paint.classes.Shape">
     <Position X="5" Y="2.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAIBAAEABAAAACAAEQAAAAAAoCAAAAAgApAEBA=</HashCode>
+      <HashCode>AgAAAAAIBIAEABAAAACAwEUAAAAAAoDAAAAAgApAEBA=</HashCode>
       <FileName>classes\Shape.cs</FileName>
     </TypeIdentifier>
   </Class>

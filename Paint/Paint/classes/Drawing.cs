@@ -19,10 +19,9 @@ namespace Paint.classes
     {
         public static void Draw(classes.Shape shape, Canvas canvas)
         {
-            Canvas.SetLeft(shape.drawBase, shape.topLeft.X);
-            Canvas.SetTop(shape.drawBase, shape.topLeft.Y);
+            //Canvas.SetLeft(shape.drawBase, shape.topLeft.X);
+            //Canvas.SetTop(shape.drawBase, shape.topLeft.Y);
             canvas.Children.Add(shape.drawBase);
-
         }
     }
 }

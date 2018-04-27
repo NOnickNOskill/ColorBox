@@ -9,9 +9,20 @@
         Width="1280"
         Height="720" KeyDown="Window_KeyDown">
     <Grid Background="#FFC8C8C8">
+        <ComboBox Name="figurelist"
+                  Margin="10,10,0,0"
+                  Width="180"
+                  Height="30"
+                  VerticalAlignment="top"
+                  HorizontalAlignment="Left"
+                  SelectedIndex="1" SelectionChanged="figurelist_SelectionChanged">
+            <Label>Прямоугольник</Label>
+            <Label>Эллипс</Label>
+            <Label>Круг</Label>
+        </ComboBox>
         <Canvas x:Name="canvas"
                 Background="#FFFFFF"
-                Margin="10,10,200,70" MouseLeftButtonDown="canvas_MouseLeftButtonDown" MouseMove="canvas_MouseMove" ClipToBounds="True"/>
+                Margin="200,10,200,70" MouseLeftButtonDown="canvas_MouseLeftButtonDown" MouseMove="canvas_MouseMove" ClipToBounds="True"/>
         <Button Width="200"
                 Height="50"
                 HorizontalAlignment="Left"
@@ -32,40 +43,7 @@
             Очистить
         </Button>
         <Grid x:Name="Choice" >
-            <RadioButton HorizontalAlignment="Center"
-                     VerticalAlignment="Bottom"
-                     Height="25"
-                     Width="300"
-                     FontFamily="Comic Sans MS" FontSize="15"
-                     Margin="0, 0, 0, 5"
-                     IsChecked="True" Checked="RadioButton_Checked"
-                     >
-                Прямоугольник
-            </RadioButton>
-            <RadioButton HorizontalAlignment="Center"
-                     VerticalAlignment="Bottom"
-                     Height="25"
-                     Width="300"
-                     FontFamily="Comic Sans MS" FontSize="15"
-                     Margin="0, 0, 0, 30" Checked="RadioButton_Checked_1">
-                Квадрат
-            </RadioButton>
-            <RadioButton HorizontalAlignment="Center"
-                     VerticalAlignment="Bottom"
-                     Height="25"
-                     Width="300"
-                     FontFamily="Comic Sans MS" FontSize="15"
-                     Margin="310, 0, 0, 5" Checked="RadioButton_Checked_3">
-                Круг
-            </RadioButton>
-            <RadioButton HorizontalAlignment="Center"
-                     VerticalAlignment="Bottom"
-                     Height="25"
-                     Width="300"
-                     FontFamily="Comic Sans MS" FontSize="15"
-                     Margin="310, 0, 0, 30" Checked="RadioButton_Checked_2">
-                Эллипс
-            </RadioButton>
+           
             <Button HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Name="saveButton"

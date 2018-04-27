@@ -259,3 +259,8 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+Paint/Paint/obj/Debug/Paint_MarkupCompile.i.cache
+*.cache
+Paint/.vs/Paint/v14/.suo
+Paint/.vs/Paint/v14/.suo
+*.cache
