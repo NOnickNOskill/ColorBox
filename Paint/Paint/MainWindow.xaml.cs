@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using Microsoft.Win32;
 using System.IO;
 using System.Reflection;
+using System.Xml;
 
 namespace Paint
 {
@@ -37,7 +38,6 @@ namespace Paint
             new EllipseCreator(),
             new CircleCreator()
         };
-        
 
         private classes.Shape shape;
         private Creator currentcreator;
@@ -48,7 +48,6 @@ namespace Paint
             classes.Shape shape = new classes.Rectangle(Colors.Green, new Point(100, 100), new Point(200, 300));
             classes.Drawing.Draw(shape, canvas);
 
-          
             shape = new classes.Ellipse(Colors.Red, new Point(100, 400), new Point(300, 500));
             classes.Drawing.Draw(shape, canvas);
 
@@ -120,11 +119,6 @@ namespace Paint
                     using (JsonWriter writer = new JsonTextWriter(stream))
                     {
                         serializer.Serialize(writer, shapeList);
-                        //foreach (classes.Shape x in shapeList)
-                        //{
-                            
-                        //    stream.Write('\n');
-                        //}
                     }
                 }
             }
@@ -186,7 +180,7 @@ namespace Paint
                 pluginDir.Create();
             }
 
-            var pluginFiles = Directory.GetFiles(pluginPath, "*dll");
+            var pluginFiles = Directory.GetFiles(pluginPath, "*.dll");
             foreach (var file in pluginFiles)
             {
                 Assembly asm = Assembly.LoadFrom(file);
@@ -208,7 +202,7 @@ namespace Paint
                 pluginDir.Create();
             }
 
-            var pluginFiles = Directory.GetFiles(pluginPath, "*dll");
+            var pluginFiles = Directory.GetFiles(pluginPath, "*.dll");
             foreach (var file in pluginFiles)
             {
                 Assembly asm = Assembly.LoadFrom(file);
@@ -226,6 +220,88 @@ namespace Paint
         private void figurelist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             currentcreator = FactoryList[figurelist.SelectedIndex];
+        }
+
+        private void colorScheme_Click(object sender, RoutedEventArgs e)
+        {
+            if (colorScheme.Content.ToString() == "Светлая схема")
+            {
+                mainGrid.Background = Brushes.Black;
+                colorScheme.Background = Brushes.Black;
+                colorScheme.Foreground = Brushes.White;
+                saveButton.Background = Brushes.Black;
+                saveButton.Foreground = Brushes.White;
+                openButton.Background = Brushes.Black;
+                openButton.Foreground = Brushes.White;
+                clearButton.Background = Brushes.Black;
+                clearButton.Foreground = Brushes.White;
+                drawButton.Background = Brushes.Black;
+                drawButton.Foreground = Brushes.White;
+                listItems.Background = Brushes.Black;
+                listItems.Foreground = Brushes.White;
+                colorScheme.Content = "Тёмная схема";
+            }
+            else
+            {
+                mainGrid.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC8C8C8"));
+                colorScheme.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC8C8C8"));
+                colorScheme.Foreground = Brushes.Black;
+                saveButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC8C8C8"));
+                saveButton.Foreground = Brushes.Black;
+                openButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC8C8C8"));
+                openButton.Foreground = Brushes.Black;
+                clearButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC8C8C8"));
+                clearButton.Foreground = Brushes.Black;
+                drawButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFC8C8C8"));
+                drawButton.Foreground = Brushes.Black;
+                listItems.Background = Brushes.White;
+                listItems.Foreground = Brushes.Black;
+                colorScheme.Content = "Светлая схема";
+            }
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            try
+            {
+                XmlTextWriter writer = new XmlTextWriter("config.xml", Encoding.UTF8);
+                writer.WriteStartDocument();
+                writer.WriteStartElement("root");
+                writer.WriteElementString("colorScheme", colorScheme.Content.ToString());
+                writer.WriteEndElement();
+                writer.Close();
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+
+            doc.Load("config.xml");
+            XmlElement element = doc.DocumentElement;
+            XmlNode node = element["colorScheme"];
+            if (node.InnerText == "Тёмная схема")
+            {
+                mainGrid.Background = Brushes.Black;
+                colorScheme.Background = Brushes.Black;
+                colorScheme.Foreground = Brushes.White;
+                saveButton.Background = Brushes.Black;
+                saveButton.Foreground = Brushes.White;
+                openButton.Background = Brushes.Black;
+                openButton.Foreground = Brushes.White;
+                clearButton.Background = Brushes.Black;
+                clearButton.Foreground = Brushes.White;
+                drawButton.Background = Brushes.Black;
+                drawButton.Foreground = Brushes.White;
+                listItems.Background = Brushes.Black;
+                listItems.Foreground = Brushes.White;
+                colorScheme.Content = "Тёмная схема";
+            } 
+           
         }
     }
 }

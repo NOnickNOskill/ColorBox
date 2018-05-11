@@ -8,7 +8,7 @@ using Paint;
 using System.Windows.Media;
 using System.Windows;
 
-namespace Square2
+namespace Paint
 {
     public class Square : Rectangle, Plugin
     {

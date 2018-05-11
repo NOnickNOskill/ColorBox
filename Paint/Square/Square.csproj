@@ -7,8 +7,8 @@
     <ProjectGuid>{84DBC859-8C8A-4864-BA5C-F65AF0279E82}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Triangle2</RootNamespace>
-    <AssemblyName>Triangle2</AssemblyName>
+    <RootNamespace>Square</RootNamespace>
+    <AssemblyName>Square</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="ColorBox v1.0"
         Width="1280"
-        Height="720" KeyDown="Window_KeyDown">
-    <Grid Background="#FFC8C8C8">
+        Height="720" KeyDown="Window_KeyDown" Closed="Window_Closed" Loaded="Window_Loaded">
+    <Grid Background="#FFC8C8C8" Name="mainGrid">
         <ComboBox Name="figurelist"
                   Margin="10,10,0,0"
                   Width="180"
@@ -25,6 +25,7 @@
                 Margin="200,10,200,70" MouseLeftButtonDown="canvas_MouseLeftButtonDown" MouseMove="canvas_MouseMove" ClipToBounds="True"/>
         <Button Width="200"
                 Height="50"
+                Name="drawButton"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Margin="10" Click="Button_Click" FontFamily="Comic Sans MS" FontSize="20" FontWeight="Bold" IsDefault="True">
@@ -36,11 +37,23 @@
                  Margin="10,10,10,70" SelectionChanged="listItems_SelectionChanged">
         </ListBox>
         <Button Width="200"
+                Name="clearButton"
                 Height="50"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Margin="230,10, 10, 10" FontFamily="Comic Sans MS" FontSize="20" FontWeight="Bold" Click="Button_Click_1" IsCancel="True">
             Очистить
+        </Button>
+        <Button Name="colorScheme"
+                Width="200"
+                Height="50"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Margin="170,10,10,10"
+                FontFamily="Comic Sans MS"
+                FontWeight="Bold"
+                FontSize="20" Click="colorScheme_Click">
+            Светлая схема
         </Button>
         <Grid x:Name="Choice" >
            
